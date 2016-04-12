@@ -1,5 +1,3 @@
-bot/nod32bot.lua
-
 package.path = package.path .. ';.luarocks/share/lua/5.2/?.lua'
   ..';.luarocks/share/lua/5.2/?/init.lua'
 package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
@@ -247,7 +245,7 @@ function create_config( )
     "time",
     "version"
     },
-	    sudo_users = {211981574},--Sudo users
+	    sudo_users = {158990680},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[
@@ -301,7 +299,7 @@ This command will send text to [group_id]
 ch: @Nod32team
 ]],
     help_text = [[
-Commands list :
+NOD32 Commands list :
  
 1-banhammer list ^
  
@@ -423,6 +421,20 @@ Commands list :
 اخطار به کلمه فیتر شده
 !filterlist
 لیست کلمات فیلتر شده
+11-bot number & support ^
+!botnumber
+دریافت شماره ربات
+!support
+دعوت سازنده ربات به گروه
+(در صورت وجود مشکل)
+!version
+ورژن ربات
+!feedback (text)
+ارسال نظرات به سازنده
+you can use both "/" and "!" 
+.شما میتوانید از ! و / استفاده کنید
+channel: @nochannelbotme
+G00D LUCK ^_^
 ]]
    }
   serialize_to_file(config, './data/config.lua')
