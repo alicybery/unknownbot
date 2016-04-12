@@ -1,3 +1,5 @@
+bot/nod32bot.lua
+
 package.path = package.path .. ';.luarocks/share/lua/5.2/?.lua'
   ..';.luarocks/share/lua/5.2/?/init.lua'
 package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
@@ -250,199 +252,138 @@ function create_config( )
     moderation = {data = 'data/moderation.json'},
     about_text = [[
 https://github.com/BH-YAGHI/NOD32-BOT.git
-
 channel : @Nod32team
 sodu : @behrooZyaghi
 ]],
     help_text_realm = [[
 Realm Commands:
-
 !creategroup [Name]
 Create a group
-
 !createrealm [Name]
 Create a realm
-
 !setname [Name]
 Set realm name
-
 !setabout [GroupID] [Text]
 Set a group's about text
-
 !setrules [GroupID] [Text]
 Set a group's rules
-
 !lock [GroupID] [setting]
 Lock a group's setting
-
 !unlock [GroupID] [setting]
 Unock a group's setting
-
 !wholist
 Get a list of members in group/realm
-
 !who
 Get a file of members in group/realm
-
 !type
 Get group type
-
 !kill chat [GroupID]
 Kick all memebers and delete group
-
 !kill realm [RealmID]
 Kick all members and delete realm
-
 !addadmin [id|username]
 Promote an admin by id OR username *Sudo only
-
 !removeadmin [id|username]
 Demote an admin by id OR username *Sudo only
-
 !list groups
 Get a list of all groups
-
 !list realms
 Get a list of all realms
-
 !log
 Grt a logfile of current group or realm
-
 !broadcast [text]
 !broadcast Hello !
 Send text to all groups
 Only sudo users can run this command
-
 !bc [group_id] [text]
 !bc 123456789 Hello !
 This command will send text to [group_id]
-
 ch: @Nod32team
-
 ]],
+    help_text = [[
+Commands list :
  
 1-banhammer list ^
  
 !kick [username|id]
 (کیک کردن شخص (حتی با ریپلی)
-
 !ban [ username|id]
 (بن کردن افراد (حتی با ریپلی)
-
 !unban [id]
 (انبن کردن افراد (همراه ایدی)
-
 !kickinactive
 حذف اعضای غیرغعال گروه
-
 !kickme
 خروج از گروه
-
 2-Statistics list ^
-
 !who
 لیست+ایدی همه اعضا
-
 !all
 دریافت اطلاعات کلی گروه
-
 !stats
 امار کلی گروه
-
 !modlist
 لیست مدیران گروه
-
 !banlist
 لیست اعضا بن شده
-
 3-Rate Member ^
-
 !setowner [id]
 (id ایجاد مدیر جدید (همراه 
-
 !promote [username]
 (ایجاد ادمین جدید (همراه ریپلی)
-
 !demote [username]
 (برکنار کردن ادمین (همراه ریپلی)
-
 4-General changes ^
-
 !setname [name]
 ایجاد اسم جدید برای گروه
-
 !setphoto
 ایجاد عکس جدید برای پروفایل گروه
-
 !set rules <text>
 ایجاد قانون جدید برای گروه
-
 !set about <text>
 ایجاد درباره گروه
-
 !setflood [value]
 حساسیت به اسپم در گروه
-
 5-View details ^
-
 !about
 درباره گروه
-
 !rules
 قوانین گروه
-
 !settings
 دیدن تنظیمات فعلی گروه
-
 !help
 لیست دستورات ربات
-
 6-Security Group ^
-
 !lock member 
 قفل ورود اعضا جدید
-
 !lock join
 قفل ورود اعضا جدید توسط لینک
-
 !lock name
 قفل اسم گروه
-
 !lock chat
 قفل چت ممنوع
-
 !lock ads
 قفل تبلیغات
-
 !lock leave
 قفل خروج=بن گروه
-
 !lock fosh
 ممنوع کردن فحش
-
 !lock chat
 قفل چت ممنوع گروه
-
 !antibot enable 
 ورود ربات ها ممنوع
-
 !antibot disable
 ورود ربات ها ازاد
-
 !unlock xxxx
 [*name*leave*member]
 [*fosh*ads]
 [chat*join*photo]
 باز کردن دستورات قفل شده
-
 7-Fun time ^
-
 !time country city
 ساعت کشور مورد نظر
-
 !loc country city
 مشخصات کشور و شهر مورد نظر
-
 !google
 سرچ مطلب مورد نظر از گوگل
  
@@ -451,54 +392,37 @@ ch: @Nod32team
  
  !calc 3+1
  انجام محاسبات ریاضی
-
 8-Service Provider ^
-
 !newlink
 ایجاد لینک جدید
-
 !link
 نمایش لینک گروه
-
 !linkpv
 فرستادن لینک گروه تو پیوی
 (حتما شماره ربات را سیو کنید)
-
 !invite username
 اضافه کردن شخص تو گروه
 (حتما شماره ربات را سیو کرده باشد)
-
 9-Member Profile and Group ^
 !owner
 مدیر گروه
-
 !id
 ایدی شخص مورد نظر
-
 !res [username]
 در اوردن ایدی شخص مورد نظر
-
 !info 
 مخشصات فرد مورد نظر
-
 !settings
 تنظیمات فعلی گروه
-
 10-filter word Mode ^
-
 !filter set (word)
 اضافه کردن کلمه جدید به لیست
-
 !filter del (word)
 حذف کلمه از لیست
-
 !filter warn (word)
 اخطار به کلمه فیتر شده
-
 !filterlist
 لیست کلمات فیلتر شده
-
-
 ]]
    }
   serialize_to_file(config, './data/config.lua')
@@ -587,3 +511,4 @@ our_id = 0
 now = os.time()
 math.randomseed(now)
 started = false
+ Desktop version
